@@ -40,7 +40,6 @@ $(document).ready(function(){
     $('#btn').click(function(){
         
             for(var i=0; i<1; i++){
-                
                 arrNumUtente.push($('#input').val());
             }if(arrNumUtente.length>arrRandom.length -1){
                 $('#btn-box').hide();
@@ -48,31 +47,27 @@ $(document).ready(function(){
                 $('#calc').show();
                 setTimeout(attesa,3000);
                 controllo(arrNumUtente,arrRandom,arrRisultato);
-                printdisplay('i numeri che hai indovinato sono: '+arrRisultato);
-                $('#restart').click(function(){
-                    reset();
-               });
-            } 
-            
+                   
+                
+            }
 
-        $('#input').val(''); 
+        $('#input').val('');   
+    });
 
-        
-         
+    $('#restart').click(function(){
+        reset(arrNumUtente, arrRisultato)
     })
-    
-
-  
 });
 
-function reset(){
+function reset(arr1, arr3){
+    arr1 = [];
+    arr3 = [];
     printOutput('Sei pronto?....CLICCA SUL VIA', '#display');
     $('#btn-start').show();
     $('#btn-box').hide();
     $('#restart').hide();
     $('#indovinati').hide();
     $('#display').show();
-
 };
 
 function printOutput (text, target){
@@ -80,33 +75,35 @@ function printOutput (text, target){
 };
 
 function generatorRandomNumber(min, max){
-    
   return Math.floor(Math.random()*(max - min + 1) + min);
-   
 };
 
 function attesa(){
     $("#calc").hide();
     $("#indovinati").show();
     $("#restart").show();
-   
-}
-function controllo(arr1,arr2,arr3){
     
-    
-    for(num of arr1){
-        if(arr2.includes(parseInt(num))){
-            arr3.push(num)
-        }
-    }
-    console.log(arr3);
     
 }
 
 function printdisplay(text){
-   
     $('#indovinati').text(text);
 }
+
+function controllo(arr1,arr2,arr3){
+    
+    for(num of arr1){
+        if(arr2.includes(parseInt(num))){
+            arr3.push(num);
+            printdisplay('i numeri che hai indovinato sono: '+arr3);
+        }else{
+            printdisplay('HAI PERSO');
+        }
+    }
+    console.log(arr3);
+}
+
+
 
 
 
