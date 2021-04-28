@@ -7,7 +7,7 @@ $(document).ready(function(){
     var arrRisultato = [];
     $('#calc').hide()
     $('#indovinati').hide()
-    $('#restart').hide()
+    $('#reset').hide()
     
     
 
@@ -47,17 +47,32 @@ $(document).ready(function(){
                 $('#calc').show();
                 setTimeout(attesa,3000);
                 controllo(arrNumUtente,arrRandom,arrRisultato);
-                   
-                
             }
 
         $('#input').val('');   
     });
 
-    $('#restart').click(function(){
+    $('#reset').click(function(){
         reset(arrNumUtente, arrRisultato)
     })
 });
+
+
+function controllo(arr1,arr2,arr3){
+    
+    for(num of arr1){
+        if(arr2.includes(parseInt(num))){
+            arr3.push(num);
+            printdisplay('i numeri che hai indovinato sono: '+arr3);
+        }else{
+            printdisplay('HAI PERSO');
+        }
+    }
+    console.log(arr3);
+}
+
+
+
 
 function reset(arr1, arr3){
     arr1 = [];
@@ -65,7 +80,7 @@ function reset(arr1, arr3){
     printOutput('Sei pronto?....CLICCA SUL VIA', '#display');
     $('#btn-start').show();
     $('#btn-box').hide();
-    $('#restart').hide();
+    $('#reset').hide();
     $('#indovinati').hide();
     $('#display').show();
 };
@@ -81,7 +96,7 @@ function generatorRandomNumber(min, max){
 function attesa(){
     $("#calc").hide();
     $("#indovinati").show();
-    $("#restart").show();
+    $("#reset").show();
     
     
 }
@@ -90,18 +105,7 @@ function printdisplay(text){
     $('#indovinati').text(text);
 }
 
-function controllo(arr1,arr2,arr3){
-    
-    for(num of arr1){
-        if(arr2.includes(parseInt(num))){
-            arr3.push(num);
-            printdisplay('i numeri che hai indovinato sono: '+arr3);
-        }else{
-            printdisplay('HAI PERSO');
-        }
-    }
-    console.log(arr3);
-}
+
 
 
 
