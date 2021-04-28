@@ -1,10 +1,10 @@
-
-$(document).ready(function(){
-    reset();
-   
     var arrRandom = [];
     var arrNumUtente = [];
     var arrRisultato = [];
+$(document).ready(function(){
+    reset();
+   
+    
     $('#calc').hide()
     $('#indovinati').hide()
     $('#reset').hide()
@@ -48,35 +48,38 @@ $(document).ready(function(){
                 setTimeout(attesa,3000);
                 controllo(arrNumUtente,arrRandom,arrRisultato);
             }
-
+            
         $('#input').val('');   
     });
 
     $('#reset').click(function(){
-        reset(arrNumUtente, arrRisultato)
+        reset()
     })
 });
 
 
 function controllo(arr1,arr2,arr3){
     
-    for(num of arr1){
+    
+    for(var num of arr1){
         if(arr2.includes(parseInt(num))){
             arr3.push(num);
-            printdisplay('i numeri che hai indovinato sono: '+arr3);
-        }else{
-            printdisplay('HAI PERSO');
         }
     }
-    console.log(arr3);
+    if(arr3.length == 0){
+        printdisplay('HAI PERSO');
+    }else{
+        printdisplay('i numeri che hai indovinato sono: '+arr3);
+    }
 }
 
 
 
 
-function reset(arr1, arr3){
-    arr1 = [];
-    arr3 = [];
+function reset(){
+    arrNumUtente = [];
+    arrRandom = [];
+    arrRisultato = [];
     printOutput('Sei pronto?....CLICCA SUL VIA', '#display');
     $('#btn-start').show();
     $('#btn-box').hide();
@@ -97,8 +100,6 @@ function attesa(){
     $("#calc").hide();
     $("#indovinati").show();
     $("#reset").show();
-    
-    
 }
 
 function printdisplay(text){
